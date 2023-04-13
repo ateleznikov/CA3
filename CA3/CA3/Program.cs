@@ -11,11 +11,9 @@ namespace CA3
     {
         static void Main(string[] args)
         {
-            int infantCounter = 0;
-
+            // Adding info to class
             Passenger passenger = new Passenger();
             string[,] passengerData = AddInfo();
-
             Passenger[] passengers = new Passenger[passengerData.GetLength(0)];
             for (int i = 0; i < passengerData.GetLength(0); i++)
             {
@@ -35,7 +33,9 @@ namespace CA3
                 passengers[i] = psngr;
             }
 
-            Passenger.Hujnya(passengers);
+
+
+            Passenger.ShipReport(passengers);
         }
         static int Menu()
         {
