@@ -11,6 +11,8 @@ namespace CA3
     {
         static void Main(string[] args)
         {
+            bool runner = true;
+
             // Adding info to class
             Passenger passenger = new Passenger();
             string[,] passengerData = AddInfo();
@@ -33,9 +35,28 @@ namespace CA3
                 passengers[i] = psngr;
             }
 
-
-
-            Passenger.ShipReport(passengers);
+            while (runner == true)
+            {
+                int choice = Menu();
+                switch (choice)
+                {
+                    case 1: 
+                        Passenger.ShipReport(passengers);
+                        break;
+                    case 2:
+                        Passenger.OccupationReport(passengers);
+                        break;
+                    case 3:
+                        Passenger.AgeReport(passengers);
+                        break;
+                    case 4:
+                        runner = false;
+                        break;
+                    default:
+                        WriteLine("Enter correct number!");
+                        break;
+                }
+            }
         }
         static int Menu()
         {
