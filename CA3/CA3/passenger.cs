@@ -106,7 +106,7 @@ namespace CA3
         {
             Dictionary<string, int> occupationCounter = new Dictionary<string, int>();
 
-            for (int i = 0; i < passengers.Length; i++)
+            for (int i = 1; i < passengers.Length; i++)
             {
                 if (!occupationCounter.ContainsKey(passengers[i].Occupation))
                 {
@@ -128,16 +128,6 @@ namespace CA3
         }
         public static void AgeReport(Passenger[] passengers)
         {
-            Dictionary<string, int> AgeCounter = new Dictionary<string, int>();
-            AgeCounter.Add("Infants(<1 year)", 0);
-            AgeCounter.Add("Children(1-12)", 0);
-            AgeCounter.Add("Teenagers(13-19)", 0);
-            AgeCounter.Add("Young adults(20-29)", 0);
-            AgeCounter.Add("Adults(30+ years)", 0);
-            AgeCounter.Add("Older Adults(50+ years)", 0);
-            AgeCounter.Add("Unknown", 0);
-
-            /*
             WriteLine($"\t----All Ages----\n");
 
             int children = 0, teenagers = 0, youngAdults = 0, adults = 0, olderAdults = 0, unknown = 0, infants = 0;
@@ -183,7 +173,6 @@ namespace CA3
             WriteLine("Adults(30+ years) : {0}", adults);
             WriteLine("Older Adults(50+ years) : {0}", olderAdults);
             WriteLine("Unknown : {0}", unknown);
-            */
         }
 
 

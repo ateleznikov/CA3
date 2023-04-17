@@ -64,14 +64,14 @@ namespace CA3
             int choice = 0;
             bool choiceChecker = false;
 
-            WriteLine("Main Menu\n");
+            WriteLine("\nMain Menu\n");
             WriteLine("1. Ship Reports\n2. Occupation Report\n3. Age Report\n4. Exit"); 
 
             while (choiceChecker == false)
             {
                 Write("Enter Choice: ");
                 inputString = ReadLine();
-
+                WriteLine();
                 if (int.TryParse(inputString, out int number))
                 {
                     choice = number;
@@ -95,7 +95,7 @@ namespace CA3
         }
         static string[,] AddInfo()
         {
-            string path = @"../../../faminefile.csv";
+            string path = @"../../../faminefiletoanalyse2.csv";
             int lineCount = File.ReadLines(path).Count();
             string[,] passengerData = new string[lineCount, 10];
             string? line;
