@@ -35,10 +35,9 @@ namespace CA3
             }
             set
             {
-                if (value.Contains("Infant"))
+                if (value == null)
                 {
-                    infantCounter++;
-                    _age = value;
+                    
                 }
                 else
                 {
@@ -52,6 +51,7 @@ namespace CA3
                         _age = _age.Substring(1);
                     }
                 }
+                
             }
         }
         public string Occupation { get { return _occupation; } set { _occupation = value; } }
@@ -85,9 +85,12 @@ namespace CA3
 
             for (int i = 1; i < passengers.Length; i++)
             {
-                if (!List.Contains(passengers[i].ShipNumber))
+                if (passengers[i].ShipNumber != null)
                 {
-                    List.Add(passengers[i].ShipNumber);
+                    if (!List.Contains(passengers[i].ShipNumber))
+                    {
+                        List.Add(passengers[i].ShipNumber);
+                    }
                 }
             }
 
@@ -108,14 +111,22 @@ namespace CA3
 
             for (int i = 1; i < passengers.Length; i++)
             {
-                if (!occupationCounter.ContainsKey(passengers[i].Occupation))
+                if (passengers[i].Occupation == null)
                 {
-                    occupationCounter.Add(passengers[i].Occupation, 1);
+                    continue;
                 }
                 else
                 {
-                    occupationCounter[passengers[i].Occupation]++;
+                    if (!occupationCounter.ContainsKey(passengers[i].Occupation))
+                    {
+                        occupationCounter.Add(passengers[i].Occupation, 1);
+                    }
+                    else
+                    {
+                        occupationCounter[passengers[i].Occupation]++;
+                    }
                 }
+                
             }
 
             WriteLine("\t----All Occupations----\n");
@@ -131,39 +142,46 @@ namespace CA3
             WriteLine($"\t----All Ages----\n");
 
             int children = 0, teenagers = 0, youngAdults = 0, adults = 0, olderAdults = 0, unknown = 0, infants = 0;
-            for (int i = 0; i < passengers.Length; i++)
+            for (int i = 1; i < passengers.Length; i++)
             {
-                if (int.TryParse(passengers[i].Age, out int age))
+                if(passengers[i].Age == null)
                 {
-                    if (age > 0 && age < 13)
-                    {
-                        children++;
-                    }
-                    else if (age >= 12 && age < 20)
-                    {
-                        teenagers++;
-                    }
-                    else if (age >= 20 && age < 30)
-                    {
-                        youngAdults++;
-                    }
-                    else if (age >= 30 && age < 50)
-                    {
-                        adults++;
-                    }
-                    else
-                    {
-                        olderAdults++;
-                    }
+                    continue;
                 }
                 else
                 {
-                    unknown++;
-                }
+                    if (int.TryParse(passengers[i].Age, out int age))
+                    {
+                        if (age > 0 && age < 13)
+                        {
+                            children++;
+                        }
+                        else if (age >= 12 && age < 20)
+                        {
+                            teenagers++;
+                        }
+                        else if (age >= 20 && age < 30)
+                        {
+                            youngAdults++;
+                        }
+                        else if (age >= 30 && age < 50)
+                        {
+                            adults++;
+                        }
+                        else
+                        {
+                            olderAdults++;
+                        }
+                    }
+                    else
+                    {
+                        unknown++;
+                    }
 
-                if (passengers[i].Age.Contains("Infant in months"))
-                {
-                    infants++;
+                    if (passengers[i].Age.Contains("Infant in months"))
+                    {
+                        infants++;
+                    }
                 }
             }
             WriteLine("Infants(<1 year) : {0}", infants);

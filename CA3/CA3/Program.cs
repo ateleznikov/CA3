@@ -95,7 +95,7 @@ namespace CA3
         }
         static string[,] AddInfo()
         {
-            string path = @"../../../faminefiletoanalyse2.csv";
+            string path = @"../../../faminefile.csv";
             int lineCount = File.ReadLines(path).Count();
             string[,] passengerData = new string[lineCount, 10];
             string? line;
@@ -108,17 +108,21 @@ namespace CA3
                     var values = line.Split(',');
                     if (values.Length != 10)
                     {
-                        throw new FormatException("Length is not equal to 10");
+                        WriteLine($"the line number {i + 1} does not contain 10 variables");
+                        continue;
                     }
-                    for (int j = 0; j < passengerData.GetLength(1); j++)
+                    else
                     {
-                        passengerData[i, j] = values[j];
+                        for (int j = 0; j < passengerData.GetLength(1); j++)
+                        {
+                            passengerData[i, j] = values[j];
+                        }
+                        i++;
                     }
-                    i++;
                 }
-
             }
             return passengerData;
         }
+
     }
 }
