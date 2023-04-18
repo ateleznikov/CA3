@@ -34,13 +34,12 @@ namespace CA3
                 }
                 passengers[i] = psngr;
             }
-
             while (runner == true)
             {
                 int choice = Menu();
                 switch (choice)
                 {
-                    case 1: 
+                    case 1:
                         Passenger.ShipReport(passengers);
                         break;
                     case 2:

@@ -41,14 +41,22 @@ namespace CA3
                 }
                 else
                 {
-                    _age = Regex.Replace(value, "[^0-9]", "");
-                    if (_age == "")
+                    if (value.Contains("Infant"))
                     {
-                        _age = "unknown";
+                        infantCounter++;
+                        _age = value;
                     }
-                    else if (_age[0] == '0')
+                    else
                     {
-                        _age = _age.Substring(1);
+                        _age = Regex.Replace(value, "[^0-9]", "");
+                        if (_age == "")
+                        {
+                            _age = "unknown";
+                        }
+                        else if (_age[0] == '0')
+                        {
+                            _age = _age.Substring(1);
+                        }
                     }
                 }
                 
@@ -173,7 +181,7 @@ namespace CA3
                             olderAdults++;
                         }
                     }
-                    else
+                    else if(!passengers[i].Age.Contains("Infant in months"))
                     {
                         unknown++;
                     }
