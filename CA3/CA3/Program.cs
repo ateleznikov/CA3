@@ -9,6 +9,7 @@ namespace CA3
 {
     internal class Program
     {
+        static string path = @"../../../faminefile.csv";
         static void Main(string[] args)
         {
             bool runner = true;
@@ -33,6 +34,10 @@ namespace CA3
                     psngr.ArrivalDate = passengerData[i, 9];
                 }
                 passengers[i] = psngr;
+            }
+            if (new FileInfo(path).Length == 0)
+            {
+                return;
             }
             while (runner == true)
             {
@@ -99,6 +104,23 @@ namespace CA3
             string[,] passengerData = new string[lineCount, 10];
             string? line;
             int i = 0;
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    throw new FileNotFoundException("File not found.", path);
+                }
+
+                if (new FileInfo(path).Length == 0)
+                {
+                    throw new Exception("File is empty.");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                WriteLine("Error: " + ex.Message);
+            }
 
             using (StreamReader sr = new StreamReader(path))
             {
